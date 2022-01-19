@@ -23,6 +23,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const crypto_1 = require("crypto");
+const jsonwebtoken_1 = require("jsonwebtoken");
 const account_service_1 = require("../account/account.service");
 let AuthService = class AuthService {
     constructor(accountService) {
@@ -36,14 +37,40 @@ let AuthService = class AuthService {
         let credentials = await this.encryption(loginDto.password);
         loginDto.password = credentials.password;
         loginDto.salt = credentials.salt;
+        console.log('got here');
         let _a = await this.accountService.create(loginDto), { password, salt } = _a, account = __rest(_a, ["password", "salt"]);
         return account;
+    }
+    async login(account) {
+        let payload = { email: account.email, role: account.role, sub: account.Id };
+        let token = (0, jsonwebtoken_1.sign)(payload, `${process.env.JWT_SECRET}`, { expiresIn: '1h' });
+        return token;
+    }
+    async validateUser(email, password) {
+        try {
+            let account = await this.accountService.findOne(email);
+            if (account && await this.decryption(account, password)) {
+                let { password, salt } = account, result = __rest(account, ["password", "salt"]);
+                return result;
+            }
+        }
+        catch (err) {
+            throw new common_1.HttpException('Invalid credentials', common_1.HttpStatus.UNAUTHORIZED);
+        }
     }
     async encryption(password) {
         let salt = await (0, crypto_1.randomBytes)(32).toString('hex');
         let hash = await (0, crypto_1.pbkdf2Sync)(password, salt, 1000, 64, "sha256").toString('hex');
         let cred = { password: hash, salt: salt };
         return cred;
+    }
+    async decryption(account, password) {
+        if (account.password === (0, crypto_1.pbkdf2Sync)(password, account.salt, 1000, 64, "sha256").toString('hex')) {
+            return true;
+        }
+        else {
+            throw new common_1.HttpException('Invalid credentials', common_1.HttpStatus.UNAUTHORIZED);
+        }
     }
     findAll() {
         return `This action returns all auth`;

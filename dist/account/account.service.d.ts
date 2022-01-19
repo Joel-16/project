@@ -1,17 +1,18 @@
-import { Model } from 'mongoose';
-import { Account, AccountDocument } from '../entities/account.entity';
+import { Account } from './entities/account.entity';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { Repository } from 'typeorm';
 export declare class AccountService {
-    private account;
-    constructor(account: Model<AccountDocument>);
-    create(createAccountDto: CreateAccountDto): Promise<Account & import("mongoose").Document<any, any, any> & {
-        _id: any;
-    }>;
-    findAll(): Promise<(Account & import("mongoose").Document<any, any, any> & {
-        _id: any;
-    })[]>;
-    findOne(email: string): Promise<Account | null>;
+    private readonly account;
+    constructor(account: Repository<Account>);
+    create(createAccountDto: CreateAccountDto): Promise<{
+        password: string;
+        salt: string;
+        address: string;
+        email: string;
+    } & Account>;
+    findAll(): Promise<Account[]>;
+    findOne(email: string): Promise<Account>;
     update(id: number, updateAccountDto: UpdateAccountDto): string;
-    remove(): Promise<import("mongodb").DeleteResult>;
+    remove(): Promise<import("typeorm").DeleteResult>;
 }

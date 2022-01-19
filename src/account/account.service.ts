@@ -1,19 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Account, AccountDocument } from '../entities/account.entity';
+import { Account } from './entities/account.entity'
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AccountService {
   constructor(
-    @InjectModel(Account.name) private account : Model<AccountDocument>
+   @InjectRepository(Account)
+   private readonly account : Repository<Account>
   ){}
 
   async create(createAccountDto: CreateAccountDto) {
-    let a = new this.account(createAccountDto)
-    return a.save()
+    console.log('got here')
+    let a = await this.account.save({
+      password : createAccountDto.password,
+      salt : createAccountDto.salt,
+      address : createAccountDto.address,
+      email : createAccountDto.email
+    })
+    console.log('got here')
+    return a
   }
 
   async findAll() {
@@ -21,9 +29,11 @@ export class AccountService {
     
   }
 
-  async findOne(email: string) :Promise<Account |null> {
-    let account = await this.account.findOne({email : email})
-    return account
+  async findOne(email: string) {
+    console.log(email)
+    let a =await this.account.findOne({email : email})
+    console.log(a)
+    return a
   }
 
   update(id: number, updateAccountDto: UpdateAccountDto) {
@@ -31,7 +41,7 @@ export class AccountService {
   }
 
   async remove() {
-    let a = await this.account.deleteMany({})
+    let a = await this.account.delete({})
     return a
   }
 }

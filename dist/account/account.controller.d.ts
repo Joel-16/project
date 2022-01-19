@@ -4,13 +4,14 @@ import { UpdateAccountDto } from './dto/update-account.dto';
 export declare class AccountController {
     private readonly accountService;
     constructor(accountService: AccountService);
-    create(createAccountDto: CreateAccountDto): Promise<import("../entities/account.entity").Account & import("mongoose").Document<any, any, any> & {
-        _id: any;
-    }>;
-    findAll(): Promise<(import("../entities/account.entity").Account & import("mongoose").Document<any, any, any> & {
-        _id: any;
-    })[]>;
+    create(createAccountDto: CreateAccountDto): Promise<{
+        password: string;
+        salt: string;
+        address: string;
+        email: string;
+    } & import("./entities/account.entity").Account>;
+    findAll(): Promise<import("./entities/account.entity").Account[]>;
     findOne(id: string): void;
     update(id: string, updateAccountDto: UpdateAccountDto): string;
-    remove(id: string): Promise<import("mongodb").DeleteResult>;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

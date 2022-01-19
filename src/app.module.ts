@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { database } from './util/dbconnection';
@@ -10,7 +10,7 @@ import { AccountModule } from './account/account.module';
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal : true}),
-    MongooseModule.forRoot(database()),
+    TypeOrmModule.forRoot(database),
     AuthModule,
     AccountModule],
   controllers: [AppController],

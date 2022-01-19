@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
-const mongoose_1 = require("@nestjs/mongoose");
+const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const dbconnection_1 = require("./util/dbconnection");
@@ -21,7 +21,7 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({ isGlobal: true }),
-            mongoose_1.MongooseModule.forRoot((0, dbconnection_1.database)()),
+            typeorm_1.TypeOrmModule.forRoot(dbconnection_1.database),
             auth_module_1.AuthModule,
             account_module_1.AccountModule
         ],

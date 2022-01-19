@@ -8,15 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountModule = void 0;
 const common_1 = require("@nestjs/common");
-const mongoose_1 = require("@nestjs/mongoose");
+const typeorm_1 = require("@nestjs/typeorm");
 const account_service_1 = require("./account.service");
 const account_controller_1 = require("./account.controller");
-const account_entity_1 = require("../entities/account.entity");
+const account_entity_1 = require("./entities/account.entity");
+const history_entites_1 = require("./entities/history.entites");
 let AccountModule = class AccountModule {
 };
 AccountModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: account_entity_1.Account.name, schema: account_entity_1.AccountSchema }])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([account_entity_1.Account, history_entites_1.History])],
         controllers: [account_controller_1.AccountController],
         providers: [account_service_1.AccountService],
         exports: [account_service_1.AccountService]

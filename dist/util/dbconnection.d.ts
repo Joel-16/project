@@ -1,1 +1,1 @@
-export declare const database: () => string;
+export declare const database: any;

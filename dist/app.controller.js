@@ -11,12 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const account_service_1 = require("./account/account.service");
 const app_service_1 = require("./app.service");
 const auth_service_1 = require("./auth/auth.service");
+const local_auth_guard_1 = require("./auth/util/local-auth.guard");
 const dto_1 = require("./dto/dto");
 let AppController = class AppController {
     constructor(appService, accountService, authService) {
@@ -33,6 +45,13 @@ let AppController = class AppController {
         }
         let a = await this.authService.register(body);
         return a;
+    }
+    async login(req) {
+        console.log(req.user);
+        const acc = await this.accountService.findOne(req.user.email);
+        let { password, salt } = acc, account = __rest(acc, ["password", "salt"]);
+        let token = await this.authService.login(req.user);
+        return { token: token, user: account };
     }
     async all() {
         return await this.accountService.findAll();
@@ -55,6 +74,14 @@ __decorate([
     __metadata("design:paramtypes", [dto_1.RegisterDto]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "register", null);
+__decorate([
+    (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
+    (0, common_1.Post)('login'),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "login", null);
 __decorate([
     (0, common_1.Get)('all'),
     __metadata("design:type", Function),

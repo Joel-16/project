@@ -14,36 +14,45 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountService = void 0;
 const common_1 = require("@nestjs/common");
-const mongoose_1 = require("@nestjs/mongoose");
-const mongoose_2 = require("mongoose");
-const account_entity_1 = require("../entities/account.entity");
+const account_entity_1 = require("./entities/account.entity");
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
 let AccountService = class AccountService {
     constructor(account) {
         this.account = account;
     }
     async create(createAccountDto) {
-        let a = new this.account(createAccountDto);
-        return a.save();
+        console.log('got here');
+        let a = await this.account.save({
+            password: createAccountDto.password,
+            salt: createAccountDto.salt,
+            address: createAccountDto.address,
+            email: createAccountDto.email
+        });
+        console.log('got here');
+        return a;
     }
     async findAll() {
         return await this.account.find({});
     }
     async findOne(email) {
-        let account = await this.account.findOne({ email: email });
-        return account;
+        console.log(email);
+        let a = await this.account.findOne({ email: email });
+        console.log(a);
+        return a;
     }
     update(id, updateAccountDto) {
         return `This action updates a #${id} account`;
     }
     async remove() {
-        let a = await this.account.deleteMany({});
+        let a = await this.account.delete({});
         return a;
     }
 };
 AccountService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(account_entity_1.Account.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __param(0, (0, typeorm_1.InjectRepository)(account_entity_1.Account)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], AccountService);
 exports.AccountService = AccountService;
 //# sourceMappingURL=account.service.js.map

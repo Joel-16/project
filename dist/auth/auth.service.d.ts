@@ -1,10 +1,24 @@
 import { RegisterDto } from '../dto/dto';
 import { AccountService } from '../account/account.service';
 import { UpdateAuthDto } from './dto/update-auth.dto';
+import { Account } from '../account/entities/account.entity';
 export declare class AuthService {
     private readonly accountService;
     constructor(accountService: AccountService);
     register(loginDto: RegisterDto): Promise<{
+        address: string;
+        email: string;
+        id: number;
+        first_name: string;
+        last_name: string;
+        age: number;
+        picture: import("../dto/dto").Photo;
+        created_at: Date;
+        history: import("../account/entities/history.entites").History[];
+    }>;
+    login(account: any): Promise<any>;
+    validateUser(email: string, password: string): Promise<{
+        id: number;
         first_name: string;
         last_name: string;
         age: number;
@@ -12,25 +26,13 @@ export declare class AuthService {
         email: string;
         picture: import("../dto/dto").Photo;
         created_at: Date;
-        history: import("../entities/history.entites").History[];
-        _id: any;
-        __v?: any;
-        $locals: Record<string, unknown>;
-        $op: string;
-        $where: Record<string, unknown>;
-        baseModelName?: string;
-        collection: import("mongoose").Collection;
-        db: import("mongoose").Connection;
-        errors?: import("mongoose").Error.ValidationError;
-        id?: any;
-        isNew: boolean;
-        modelName: string;
-        schema: import("mongoose").Schema<any, import("mongoose").Model<any, any, any, any>, any>;
+        history: import("../account/entities/history.entites").History[];
     }>;
     encryption(password: string): Promise<{
         password: string;
         salt: string;
     }>;
+    decryption(account: Account, password: string): Promise<boolean>;
     findAll(): string;
     findOne(id: number): string;
     update(id: number, updateAuthDto: UpdateAuthDto): string;
