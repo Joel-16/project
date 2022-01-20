@@ -1,22 +1,26 @@
-import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, BeforeInsert, CreateDateColumn, BeforeUpdate, UpdateDateColumn, OneToOne, JoinColumn, OneToMany, AfterUpdate, ManyToOne} from "typeorm";
+import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, JoinColumn, OneToMany} from "typeorm";
 import { History } from './history.entites';
 import { Photo } from '../../dto/dto';
+import { Role } from "../dto/create-account.dto";
 
 @Entity()
 export class Account extends BaseEntity {
   @PrimaryGeneratedColumn()
   id : number
 
-  @Column()
+  @Column({ default : Role.Patient})
+  role : Role
+
+  @Column({nullable : true})
   first_name: string;
 
-  @Column()
+  @Column({nullable : true})
   last_name: string;
 
-  @Column()
+  @Column({nullable : true})
   age: number;
 
-  @Column()
+  @Column({nullable : true})
   address: string;
 
   @Column()
@@ -28,20 +32,15 @@ export class Account extends BaseEntity {
   @Column({unique : true})
   email : string
 
-  @Column({type : 'json'})
+  @Column({type : 'json',nullable : true})
   picture : Photo
 
-  @Column()
+  @Column({type : 'timestamp', default : new Date()})
   created_at : Date
 
   @OneToMany(() => History, history=> history.account, {eager : true, nullable: true})
   @JoinColumn()
   history : History[]
   
-  @BeforeInsert()
-  addDate(){
-     let date = new Date()
-     this.created_at = date      
-  }
 }
 

@@ -1,7 +1,7 @@
+import { Repository } from 'typeorm';
 import { Account } from './entities/account.entity';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
-import { Repository } from 'typeorm';
 export declare class AccountService {
     private readonly account;
     constructor(account: Repository<Account>);

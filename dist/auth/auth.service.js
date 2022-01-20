@@ -37,7 +37,6 @@ let AuthService = class AuthService {
         let credentials = await this.encryption(loginDto.password);
         loginDto.password = credentials.password;
         loginDto.salt = credentials.salt;
-        console.log('got here');
         let _a = await this.accountService.create(loginDto), { password, salt } = _a, account = __rest(_a, ["password", "salt"]);
         return account;
     }

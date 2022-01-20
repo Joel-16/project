@@ -21,7 +21,6 @@ export class AuthService {
     let credentials = await this.encryption(loginDto.password)
     loginDto.password = credentials.password
     loginDto.salt = credentials.salt
-    console.log('got here')
     let { password, salt, ...account } = await this.accountService.create(loginDto)
     // let result =await this.emailService.emailConfirmation(account.id, loginDto.email, loginDto.firstName)
     // if (result){

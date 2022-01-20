@@ -30,11 +30,8 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Req() req){
-    console.log(req.user)
-    const acc = await this.accountService.findOne(req.user.email)
-    let {password, salt, ...account} = acc
     let token = await this.authService.login(req.user)
-    return {token : token, user : account}
+    return {token : token, user : req.user}
   }
 
 

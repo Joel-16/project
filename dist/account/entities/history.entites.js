@@ -13,29 +13,19 @@ exports.History = void 0;
 const typeorm_1 = require("typeorm");
 const account_entity_1 = require("./account.entity");
 let History = class History extends typeorm_1.BaseEntity {
-    addDate() {
-        let date = new Date();
-        this.date = date;
-    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], History.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => account_entity_1.Account, account => account.address),
+    (0, typeorm_1.ManyToOne)(() => account_entity_1.Account, account => account.address),
     __metadata("design:type", account_entity_1.Account)
 ], History.prototype, "account", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'timestamp', default: new Date() }),
     __metadata("design:type", Date)
 ], History.prototype, "date", void 0);
-__decorate([
-    (0, typeorm_1.BeforeInsert)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], History.prototype, "addDate", null);
 History = __decorate([
     (0, typeorm_1.Entity)()
 ], History);

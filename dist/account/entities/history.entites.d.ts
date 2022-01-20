@@ -4,5 +4,4 @@ export declare class History extends BaseEntity {
     id: number;
     account: Account;
     date: Date;
-    addDate(): void;
 }

@@ -14,31 +14,27 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountService = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("typeorm");
 const account_entity_1 = require("./entities/account.entity");
-const typeorm_1 = require("@nestjs/typeorm");
-const typeorm_2 = require("typeorm");
+const typeorm_2 = require("@nestjs/typeorm");
 let AccountService = class AccountService {
     constructor(account) {
         this.account = account;
     }
     async create(createAccountDto) {
-        console.log('got here');
         let a = await this.account.save({
             password: createAccountDto.password,
             salt: createAccountDto.salt,
             address: createAccountDto.address,
             email: createAccountDto.email
         });
-        console.log('got here');
         return a;
     }
     async findAll() {
         return await this.account.find({});
     }
     async findOne(email) {
-        console.log(email);
-        let a = await this.account.findOne({ email: email });
-        console.log(a);
+        let a = await this.account.findOne({ where: { email: email } });
         return a;
     }
     update(id, updateAccountDto) {
@@ -51,8 +47,8 @@ let AccountService = class AccountService {
 };
 AccountService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(account_entity_1.Account)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(0, (0, typeorm_2.InjectRepository)(account_entity_1.Account)),
+    __metadata("design:paramtypes", [typeorm_1.Repository])
 ], AccountService);
 exports.AccountService = AccountService;
 //# sourceMappingURL=account.service.js.map

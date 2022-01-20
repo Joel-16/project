@@ -13,30 +13,31 @@ exports.Account = void 0;
 const typeorm_1 = require("typeorm");
 const history_entites_1 = require("./history.entites");
 const dto_1 = require("../../dto/dto");
+const create_account_dto_1 = require("../dto/create-account.dto");
 let Account = class Account extends typeorm_1.BaseEntity {
-    addDate() {
-        let date = new Date();
-        this.created_at = date;
-    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], Account.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: create_account_dto_1.Role.Patient }),
+    __metadata("design:type", String)
+], Account.prototype, "role", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Account.prototype, "first_name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Account.prototype, "last_name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", Number)
 ], Account.prototype, "age", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Account.prototype, "address", void 0);
 __decorate([
@@ -52,11 +53,11 @@ __decorate([
     __metadata("design:type", String)
 ], Account.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'json' }),
+    (0, typeorm_1.Column)({ type: 'json', nullable: true }),
     __metadata("design:type", dto_1.Photo)
 ], Account.prototype, "picture", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'timestamp', default: new Date() }),
     __metadata("design:type", Date)
 ], Account.prototype, "created_at", void 0);
 __decorate([
@@ -64,12 +65,6 @@ __decorate([
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", Array)
 ], Account.prototype, "history", void 0);
-__decorate([
-    (0, typeorm_1.BeforeInsert)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], Account.prototype, "addDate", null);
 Account = __decorate([
     (0, typeorm_1.Entity)()
 ], Account);

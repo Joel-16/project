@@ -12,6 +12,7 @@ export declare class AppController {
         address: string;
         email: string;
         id: number;
+        role: import("./account/dto/create-account.dto").Role;
         first_name: string;
         last_name: string;
         age: number;
@@ -21,17 +22,7 @@ export declare class AppController {
     }>;
     login(req: any): Promise<{
         token: any;
-        user: {
-            id: number;
-            first_name: string;
-            last_name: string;
-            age: number;
-            address: string;
-            email: string;
-            picture: import("./dto/dto").Photo;
-            created_at: Date;
-            history: import("./account/entities/history.entites").History[];
-        };
+        user: any;
     }>;
     all(): Promise<import("./account/entities/account.entity").Account[]>;
     delete(): Promise<import("typeorm").DeleteResult>;

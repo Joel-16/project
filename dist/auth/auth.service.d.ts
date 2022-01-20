@@ -9,6 +9,7 @@ export declare class AuthService {
         address: string;
         email: string;
         id: number;
+        role: import("../account/dto/create-account.dto").Role;
         first_name: string;
         last_name: string;
         age: number;
@@ -19,6 +20,7 @@ export declare class AuthService {
     login(account: any): Promise<any>;
     validateUser(email: string, password: string): Promise<{
         id: number;
+        role: import("../account/dto/create-account.dto").Role;
         first_name: string;
         last_name: string;
         age: number;
