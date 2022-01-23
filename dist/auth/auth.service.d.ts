@@ -1,15 +1,17 @@
-import { RegisterDto } from '../dto/dto';
+import { RegisterDto, Role } from '../dto/dto';
 import { AccountService } from '../account/account.service';
-import { UpdateAuthDto } from './dto/update-auth.dto';
-import { Account } from '../account/entities/account.entity';
+import { AdminService } from '../admin/admin.service';
+import { DoctorsService } from 'src/doctors/doctors.service';
 export declare class AuthService {
     private readonly accountService;
-    constructor(accountService: AccountService);
+    private readonly adminService;
+    private readonly doctorService;
+    constructor(accountService: AccountService, adminService: AdminService, doctorService: DoctorsService);
     register(loginDto: RegisterDto): Promise<{
         address: string;
         email: string;
         id: number;
-        role: import("../account/dto/create-account.dto").Role;
+        role: Role;
         first_name: string;
         last_name: string;
         age: number;
@@ -17,10 +19,21 @@ export declare class AuthService {
         created_at: Date;
         history: import("../account/entities/history.entites").History[];
     }>;
+    doctorReg(staff: any, pass: string): Promise<{
+        email: string;
+        password: string;
+        salt: string;
+        address: string;
+    } & import("../doctors/entities/doctor.entity").Doctor>;
+    adminReg(email: string, pass: string): Promise<{
+        email: any;
+        password: any;
+        salt: any;
+    } & import("../admin/entities/admin.entity").Admin>;
     login(account: any): Promise<any>;
     validateUser(email: string, password: string): Promise<{
         id: number;
-        role: import("../account/dto/create-account.dto").Role;
+        role: Role;
         first_name: string;
         last_name: string;
         age: number;
@@ -29,14 +42,22 @@ export declare class AuthService {
         picture: import("../dto/dto").Photo;
         created_at: Date;
         history: import("../account/entities/history.entites").History[];
+    }>;
+    validateDoctor(email: string, password: string): Promise<{
+        id: string;
+        role: Role;
+        email: string;
+        address: string;
+        created_at: Date;
+    }>;
+    validateAdmin(email: string, password: string): Promise<{
+        id: string;
+        role: Role;
+        email: string;
     }>;
     encryption(password: string): Promise<{
         password: string;
         salt: string;
     }>;
-    decryption(account: Account, password: string): Promise<boolean>;
-    findAll(): string;
-    findOne(id: number): string;
-    update(id: number, updateAuthDto: UpdateAuthDto): string;
-    remove(id: number): string;
+    decryption(account: any, password: string): Promise<boolean>;
 }

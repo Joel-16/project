@@ -1,16 +1,17 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { pbkdf2Sync, randomBytes } from 'crypto';
 import { sign } from 'jsonwebtoken';
-import { RegisterDto } from '../dto/dto';
+import { RegisterDto, Role } from '../dto/dto';
 import { AccountService } from '../account/account.service';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
-import { Account } from '../account/entities/account.entity'
+import { AdminService } from '../admin/admin.service';
+import { DoctorsService } from 'src/doctors/doctors.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly accountService: AccountService
+    private readonly accountService: AccountService,
+    private readonly adminService: AdminService,
+    private readonly doctorService: DoctorsService
   ) { }
 
   async register(loginDto: RegisterDto) {
@@ -30,11 +31,34 @@ export class AuthService {
     return account
   }
 
-  async login(account : any){
-    let payload = {email : account.email, role : account.role, sub : account.Id}
-    let token = sign(payload, `${process.env.JWT_SECRET}`, {expiresIn : '1h'})
-    return token          
- }
+  async doctorReg(staff, pass: string) {
+    let credentials = await this.encryption(pass)
+    staff = { ...staff, ...credentials }
+    let a = await this.doctorService.create(staff)
+    // let result =await this.emailService.staff(staff.email, pass)
+    return a
+  }
+
+  async adminReg(email: string, pass: string) {
+    let credentials = await this.encryption(pass)
+    let a = await this.adminService.create({ email: email, ...credentials })
+    return a
+  }
+  async login(account: any) {
+    let payload = { email: account.email, role: account.role, sub: account.Id }
+    let token
+    if (account.role === Role.Patient) {
+      token = sign(payload, `${process.env.JWT_SECRET}`, { expiresIn: '2h' })
+    }
+    if (account.role === Role.Doctor) {
+      token = sign(payload, `${process.env.DOCTOR_SECRET}`, { expiresIn: '2h' })
+    }
+    if (account.role === Role.Admin) {
+      token = sign(payload, `${process.env.ADMIN_SECRET}`, { expiresIn: '2h' })
+    }
+    return token
+  }
+
   async validateUser(email: string, password: string) {
     try {
       let account = await this.accountService.findOne(email)
@@ -47,6 +71,29 @@ export class AuthService {
     }
   }
 
+  async validateDoctor(email: string, password: string) {
+    try {
+      let doctor = await this.doctorService.findOne(email)
+      if (doctor && await this.decryption(doctor, password)) {
+        let { password, salt, ...result } = doctor
+        return result
+      }
+    } catch (err) {
+      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED)
+    }
+  }
+
+  async validateAdmin(email: string, password: string) {
+    try {
+      let admin = await this.adminService.findOne(email)
+      if (admin && await this.decryption(admin, password)) {
+        let { password, salt, ...result } = admin
+        return result
+      }
+    } catch (err) {
+      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED)
+    }
+  }
   async encryption(password: string) {
     let salt = await randomBytes(32).toString('hex');
     let hash = await pbkdf2Sync(password, salt, 1000, 64, "sha256").toString('hex');
@@ -54,7 +101,7 @@ export class AuthService {
     return cred
   }
 
-  async decryption(account: Account, password: string) {
+  async decryption(account, password: string) {
     if (account.password === pbkdf2Sync(password, account.salt, 1000, 64, "sha256").toString('hex')) {
       return true
     } else {
@@ -62,31 +109,4 @@ export class AuthService {
     }
   }
 
-  // async validateStaff(email: string, password: string){
-  //   try{
-  //      let staff = await this.adminService.findStaff(email)
-  //      if (staff && await this.decryption(staff, password)){
-  //         let {password,salt, ...result}=staff
-  //         return result
-  //      }
-  //   } catch (err) {
-  //      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED)
-  //   }
-  //  }
-
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
-  }
 }

@@ -12,7 +12,7 @@ export declare class AppController {
         address: string;
         email: string;
         id: number;
-        role: import("./account/dto/create-account.dto").Role;
+        role: import("./dto/dto").Role;
         first_name: string;
         last_name: string;
         age: number;

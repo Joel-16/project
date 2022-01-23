@@ -13,7 +13,6 @@ exports.Account = void 0;
 const typeorm_1 = require("typeorm");
 const history_entites_1 = require("./history.entites");
 const dto_1 = require("../../dto/dto");
-const create_account_dto_1 = require("../dto/create-account.dto");
 let Account = class Account extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -21,7 +20,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Account.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: create_account_dto_1.Role.Patient }),
+    (0, typeorm_1.Column)({ default: dto_1.Role.Patient }),
     __metadata("design:type", String)
 ], Account.prototype, "role", void 0);
 __decorate([

@@ -24,6 +24,14 @@ let LocalStrategy = class LocalStrategy extends (0, passport_1.PassportStrategy)
             const user = await this.authService.validateUser(email, password);
             return user;
         }
+        else if (await this.authService.validateDoctor(email, password)) {
+            const doctor = await this.authService.validateDoctor(email, password);
+            return doctor;
+        }
+        else {
+            const admin = await this.authService.validateAdmin(email, password);
+            return admin;
+        }
     }
 };
 LocalStrategy = __decorate([

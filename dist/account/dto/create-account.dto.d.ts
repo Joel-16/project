@@ -4,7 +4,3 @@ export declare class CreateAccountDto {
     address?: string;
     salt?: string;
 }
-export declare enum Role {
-    Patient = "PATIENT",
-    Doctor = "DOCTOR"
-}

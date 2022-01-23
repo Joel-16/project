@@ -9,3 +9,8 @@ export declare class RegisterDto {
     address?: string;
     salt?: string;
 }
+export declare enum Role {
+    Patient = "PATIENT",
+    Doctor = "DOCTOR",
+    Admin = "ADMIN"
+}

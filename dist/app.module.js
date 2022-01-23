@@ -15,6 +15,9 @@ const app_service_1 = require("./app.service");
 const dbconnection_1 = require("./util/dbconnection");
 const auth_module_1 = require("./auth/auth.module");
 const account_module_1 = require("./account/account.module");
+const chat_module_1 = require("./chat/chat.module");
+const admin_module_1 = require("./admin/admin.module");
+const doctors_module_1 = require("./doctors/doctors.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -23,7 +26,10 @@ AppModule = __decorate([
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             typeorm_1.TypeOrmModule.forRoot(dbconnection_1.database),
             auth_module_1.AuthModule,
-            account_module_1.AccountModule
+            account_module_1.AccountModule,
+            chat_module_1.ChatModule,
+            admin_module_1.AdminModule,
+            doctors_module_1.DoctorsModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

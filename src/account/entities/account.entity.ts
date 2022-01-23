@@ -1,7 +1,6 @@
 import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, JoinColumn, OneToMany} from "typeorm";
 import { History } from './history.entites';
-import { Photo } from '../../dto/dto';
-import { Role } from "../dto/create-account.dto";
+import { Photo,  Role } from '../../dto/dto';
 
 @Entity()
 export class Account extends BaseEntity {

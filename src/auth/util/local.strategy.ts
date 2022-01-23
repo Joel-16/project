@@ -13,10 +13,12 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     if (await this.authService.validateUser(email, password)) {
       const user = await this.authService.validateUser(email, password)
       return user;
-      // } else (await this.authService.validateStaff(email, password)) {
-      //   const staff = await this.authService.validateStaff(email, password)
-      //   return staff
-      // }
+    } else if (await this.authService.validateDoctor(email, password)) {
+      const doctor = await this.authService.validateDoctor(email, password)
+      return doctor
+    } else {
+      const admin = await this.authService.validateAdmin(email, password)
+      return admin
     }
   }
 }

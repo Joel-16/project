@@ -6,13 +6,19 @@ import { AppService } from './app.service';
 import { database } from './util/dbconnection';
 import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
+import { ChatModule } from './chat/chat.module';
+import { AdminModule } from './admin/admin.module';
+import { DoctorsModule } from './doctors/doctors.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal : true}),
     TypeOrmModule.forRoot(database),
     AuthModule,
-    AccountModule],
+    AccountModule,
+    ChatModule,
+    AdminModule,
+    DoctorsModule],
   controllers: [AppController],
   providers: [AppService],
 })

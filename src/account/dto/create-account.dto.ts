@@ -5,7 +5,3 @@ export class CreateAccountDto {
    salt? :string
 }
 
-export enum Role{
-   Patient = 'PATIENT',
-   Doctor = 'DOCTOR'
-}
