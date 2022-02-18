@@ -5,6 +5,7 @@ import { AccountController } from './account.controller';
 import { Account } from './entities/account.entity'
 import { History } from './entities/history.entites';
 
+
 @Module({
   imports: [TypeOrmModule.forFeature([Account, History])],
   controllers: [AccountController],

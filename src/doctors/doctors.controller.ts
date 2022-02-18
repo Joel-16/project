@@ -17,10 +17,6 @@ export class DoctorsController {
     return this.doctorsService.findAll();
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDoctorDto: UpdateDoctorDto) {
-    return this.doctorsService.update(+id, updateDoctorDto);
-  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

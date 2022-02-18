@@ -13,10 +13,12 @@ export declare class AuthService {
         id: number;
         role: Role;
         first_name: string;
+        username: string;
         last_name: string;
         age: number;
         picture: import("../dto/dto").Photo;
         created_at: Date;
+        chats: import("../chat/entities/chats.entity").Chats[];
         history: import("../account/entities/history.entites").History[];
     }>;
     doctorReg(staff: any, pass: string): Promise<{
@@ -35,20 +37,24 @@ export declare class AuthService {
         id: number;
         role: Role;
         first_name: string;
+        username: string;
         last_name: string;
         age: number;
         address: string;
         email: string;
         picture: import("../dto/dto").Photo;
         created_at: Date;
+        chats: import("../chat/entities/chats.entity").Chats[];
         history: import("../account/entities/history.entites").History[];
     }>;
     validateDoctor(email: string, password: string): Promise<{
         id: string;
         role: Role;
+        username: string;
         email: string;
         address: string;
         created_at: Date;
+        chats: import("../chat/entities/chats.entity").Chats[];
     }>;
     validateAdmin(email: string, password: string): Promise<{
         id: string;

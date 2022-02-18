@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Account } from './entities/account.entity'
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
@@ -32,9 +32,15 @@ export class AccountService {
     return a
   }
 
-  update(id: number, updateAccountDto: UpdateAccountDto) {
-    return `This action updates a #${id} account`;
+  async findById(id: number) {
+    let a =await this.account.findOne({where : {id : id}})
+    return a
   }
+
+  // async findByUsername (username){
+  //   let a =await this.account.find({where : {email : Like(`${username}%`)}})
+  //   return a
+  // }
 
   async remove() {
     let a = await this.account.delete({})

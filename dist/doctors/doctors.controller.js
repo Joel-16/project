@@ -16,7 +16,6 @@ exports.DoctorsController = void 0;
 const common_1 = require("@nestjs/common");
 const doctors_service_1 = require("./doctors.service");
 const create_doctor_dto_1 = require("./dto/create-doctor.dto");
-const update_doctor_dto_1 = require("./dto/update-doctor.dto");
 let DoctorsController = class DoctorsController {
     constructor(doctorsService) {
         this.doctorsService = doctorsService;
@@ -26,9 +25,6 @@ let DoctorsController = class DoctorsController {
     }
     findAll() {
         return this.doctorsService.findAll();
-    }
-    update(id, updateDoctorDto) {
-        return this.doctorsService.update(+id, updateDoctorDto);
     }
     remove(id) {
         return this.doctorsService.remove(+id);
@@ -47,14 +43,6 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], DoctorsController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_doctor_dto_1.UpdateDoctorDto]),
-    __metadata("design:returntype", void 0)
-], DoctorsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),

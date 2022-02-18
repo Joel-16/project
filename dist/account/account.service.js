@@ -37,8 +37,9 @@ let AccountService = class AccountService {
         let a = await this.account.findOne({ where: { email: email } });
         return a;
     }
-    update(id, updateAccountDto) {
-        return `This action updates a #${id} account`;
+    async findById(id) {
+        let a = await this.account.findOne({ where: { id: id } });
+        return a;
     }
     async remove() {
         let a = await this.account.delete({});

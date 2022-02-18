@@ -14,10 +14,12 @@ export declare class AppController {
         id: number;
         role: import("./dto/dto").Role;
         first_name: string;
+        username: string;
         last_name: string;
         age: number;
         picture: import("./dto/dto").Photo;
         created_at: Date;
+        chats: import("./chat/entities/chats.entity").Chats[];
         history: import("./account/entities/history.entites").History[];
     }>;
     login(req: any): Promise<{

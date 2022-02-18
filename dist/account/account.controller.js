@@ -16,7 +16,6 @@ exports.AccountController = void 0;
 const common_1 = require("@nestjs/common");
 const account_service_1 = require("./account.service");
 const create_account_dto_1 = require("./dto/create-account.dto");
-const update_account_dto_1 = require("./dto/update-account.dto");
 let AccountController = class AccountController {
     constructor(accountService) {
         this.accountService = accountService;
@@ -28,9 +27,6 @@ let AccountController = class AccountController {
         return this.accountService.findAll();
     }
     findOne(id) {
-    }
-    update(id, updateAccountDto) {
-        return this.accountService.update(+id, updateAccountDto);
     }
     remove(id) {
         return this.accountService.remove();
@@ -56,14 +52,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], AccountController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_account_dto_1.UpdateAccountDto]),
-    __metadata("design:returntype", void 0)
-], AccountController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),

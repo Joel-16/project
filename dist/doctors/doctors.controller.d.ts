@@ -1,6 +1,5 @@
 import { DoctorsService } from './doctors.service';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
-import { UpdateDoctorDto } from './dto/update-doctor.dto';
 export declare class DoctorsController {
     private readonly doctorsService;
     constructor(doctorsService: DoctorsService);
@@ -10,7 +9,6 @@ export declare class DoctorsController {
         salt: string;
         address: string;
     } & import("./entities/doctor.entity").Doctor>;
-    findAll(): string;
-    update(id: string, updateDoctorDto: UpdateDoctorDto): string;
+    findAll(): Promise<import("./entities/doctor.entity").Doctor[]>;
     remove(id: string): string;
 }

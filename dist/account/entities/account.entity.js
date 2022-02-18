@@ -13,6 +13,7 @@ exports.Account = void 0;
 const typeorm_1 = require("typeorm");
 const history_entites_1 = require("./history.entites");
 const dto_1 = require("../../dto/dto");
+const chats_entity_1 = require("../../chat/entities/chats.entity");
 let Account = class Account extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -27,6 +28,10 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Account.prototype, "first_name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true, unique: true }),
+    __metadata("design:type", String)
+], Account.prototype, "username", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
@@ -59,6 +64,11 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'timestamp', default: new Date() }),
     __metadata("design:type", Date)
 ], Account.prototype, "created_at", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => chats_entity_1.Chats, chats => chats.account, { eager: true, nullable: true }),
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", Array)
+], Account.prototype, "chats", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => history_entites_1.History, history => history.account, { eager: true, nullable: true }),
     (0, typeorm_1.JoinColumn)(),

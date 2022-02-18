@@ -21,16 +21,16 @@ export class DoctorsService {
     return doctor
   }
 
-  findAll() {
-    return `This action returns all doctors`;
+  async findById(id : number) {
+    return await this.doctor.findOne(id)
   }
 
   async findOne(email: string) {
     return await this.doctor.findOne({email});
   }
 
-  update(id: number, updateDoctorDto: UpdateDoctorDto) {
-    return `This action updates a #${id} doctor`;
+  async findAll() {
+    return await this.doctor.find({})
   }
 
   remove(id: number) {

@@ -30,14 +30,14 @@ let DoctorsService = class DoctorsService {
         });
         return doctor;
     }
-    findAll() {
-        return `This action returns all doctors`;
+    async findById(id) {
+        return await this.doctor.findOne(id);
     }
     async findOne(email) {
         return await this.doctor.findOne({ email });
     }
-    update(id, updateDoctorDto) {
-        return `This action updates a #${id} doctor`;
+    async findAll() {
+        return await this.doctor.find({});
     }
     remove(id) {
         return `This action removes a #${id} doctor`;

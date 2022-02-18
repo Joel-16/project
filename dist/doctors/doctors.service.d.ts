@@ -1,7 +1,6 @@
 import { Repository } from 'typeorm';
 import { Doctor } from './entities/doctor.entity';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
-import { UpdateDoctorDto } from './dto/update-doctor.dto';
 export declare class DoctorsService {
     private readonly doctor;
     constructor(doctor: Repository<Doctor>);
@@ -11,8 +10,8 @@ export declare class DoctorsService {
         salt: string;
         address: string;
     } & Doctor>;
-    findAll(): string;
+    findById(id: number): Promise<Doctor>;
     findOne(email: string): Promise<Doctor>;
-    update(id: number, updateDoctorDto: UpdateDoctorDto): string;
+    findAll(): Promise<Doctor[]>;
     remove(id: number): string;
 }
