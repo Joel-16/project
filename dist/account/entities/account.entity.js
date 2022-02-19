@@ -59,7 +59,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: 'json', nullable: true }),
     __metadata("design:type", dto_1.Photo)
-], Account.prototype, "picture", void 0);
+], Account.prototype, "image", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'timestamp', default: new Date() }),
     __metadata("design:type", Date)

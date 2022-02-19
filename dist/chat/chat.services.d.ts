@@ -23,5 +23,4 @@ export declare class ChatService {
         sender: any;
         recipient: any;
     } & Messages>;
-    getMessages(id: any): Promise<Messages[]>;
 }

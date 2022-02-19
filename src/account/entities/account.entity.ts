@@ -36,7 +36,7 @@ export class Account extends BaseEntity {
   email : string
 
   @Column({type : 'json',nullable : true})
-  picture : Photo
+  image : Photo
 
   @Column({type : 'timestamp', default : new Date()})
   created_at : Date

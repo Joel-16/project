@@ -16,7 +16,7 @@ export declare class AuthService {
         username: string;
         last_name: string;
         age: number;
-        picture: import("../dto/dto").Photo;
+        image: import("../dto/dto").Photo;
         created_at: Date;
         chats: import("../chat/entities/chats.entity").Chats[];
         history: import("../account/entities/history.entites").History[];
@@ -42,7 +42,7 @@ export declare class AuthService {
         age: number;
         address: string;
         email: string;
-        picture: import("../dto/dto").Photo;
+        image: import("../dto/dto").Photo;
         created_at: Date;
         chats: import("../chat/entities/chats.entity").Chats[];
         history: import("../account/entities/history.entites").History[];
@@ -53,6 +53,8 @@ export declare class AuthService {
         username: string;
         email: string;
         address: string;
+        state: string;
+        lga: string;
         created_at: Date;
         chats: import("../chat/entities/chats.entity").Chats[];
     }>;

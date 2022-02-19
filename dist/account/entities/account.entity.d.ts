@@ -13,7 +13,7 @@ export declare class Account extends BaseEntity {
     password: string;
     salt: string;
     email: string;
-    picture: Photo;
+    image: Photo;
     created_at: Date;
     chats: Chats[];
     history: History[];

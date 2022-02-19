@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Like, Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { unlinkSync } from 'fs';
 import { Account } from './entities/account.entity'
 import { CreateAccountDto } from './dto/create-account.dto';
-import { UpdateAccountDto } from './dto/update-account.dto';
-import { InjectRepository } from '@nestjs/typeorm';
+import { UpdateProfile } from './dto/update-account.dto';
 
 @Injectable()
 export class AccountService {
@@ -35,6 +36,22 @@ export class AccountService {
   async findById(id: number) {
     let a =await this.account.findOne({where : {id : id}})
     return a
+  }
+
+  async profile (profile : UpdateProfile, user){
+    let account = await this.account.findOne({id : user.id})
+    let link : string
+    if (account.image){
+      link =account.image.path
+    }
+    account.address = profile.address,
+    account.age =profile.age,
+    account.first_name = profile.first_name,
+    account.last_name = profile.last_name,
+    account.image = profile.image
+    await account.save()
+    unlinkSync(link)
+    return account
   }
 
   // async findByUsername (username){

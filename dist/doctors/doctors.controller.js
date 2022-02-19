@@ -15,13 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DoctorsController = void 0;
 const common_1 = require("@nestjs/common");
 const doctors_service_1 = require("./doctors.service");
-const create_doctor_dto_1 = require("./dto/create-doctor.dto");
 let DoctorsController = class DoctorsController {
     constructor(doctorsService) {
         this.doctorsService = doctorsService;
-    }
-    create(createDoctorDto) {
-        return this.doctorsService.create(createDoctorDto);
     }
     findAll() {
         return this.doctorsService.findAll();
@@ -30,13 +26,6 @@ let DoctorsController = class DoctorsController {
         return this.doctorsService.remove(+id);
     }
 };
-__decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_doctor_dto_1.CreateDoctorDto]),
-    __metadata("design:returntype", void 0)
-], DoctorsController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

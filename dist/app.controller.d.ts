@@ -17,7 +17,7 @@ export declare class AppController {
         username: string;
         last_name: string;
         age: number;
-        picture: import("./dto/dto").Photo;
+        image: import("./dto/dto").Photo;
         created_at: Date;
         chats: import("./chat/entities/chats.entity").Chats[];
         history: import("./account/entities/history.entites").History[];

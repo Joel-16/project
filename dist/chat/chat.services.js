@@ -61,9 +61,6 @@ let ChatService = class ChatService {
         await chat.save();
         return message;
     }
-    async getMessages(id) {
-        return await this.messages.find({});
-    }
 };
 ChatService = __decorate([
     (0, common_1.Injectable)(),

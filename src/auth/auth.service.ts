@@ -45,7 +45,7 @@ export class AuthService {
     return a
   }
   async login(account: any) {
-    let payload = { email: account.email, role: account.role, sub: account.Id }
+    let payload = { email: account.email, role: account.role, id: account.id }
     let token
     if (account.role === Role.Patient) {
       token = sign(payload, `${process.env.JWT_SECRET}`, { expiresIn: '2h' })

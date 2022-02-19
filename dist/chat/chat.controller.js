@@ -22,9 +22,6 @@ let ChatController = class ChatController {
     async create(body) {
         return await this.chatService.createMessage(body);
     }
-    async allmessages(id) {
-        return await this.chatService.getMessages(Number(id));
-    }
 };
 __decorate([
     (0, common_1.Post)(),
@@ -33,13 +30,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ChatController.prototype, "create", null);
-__decorate([
-    (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], ChatController.prototype, "allmessages", null);
 ChatController = __decorate([
     (0, common_1.Controller)('chat'),
     __metadata("design:paramtypes", [chat_services_1.ChatService])

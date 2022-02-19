@@ -53,7 +53,4 @@ export class ChatService {
       return message
    }
 
-   async getMessages(id) {
-      return await this.messages.find({ })
-   }
 }

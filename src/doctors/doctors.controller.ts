@@ -5,12 +5,7 @@ import { UpdateDoctorDto } from './dto/update-doctor.dto';
 
 @Controller('doctors')
 export class DoctorsController {
-  constructor(private readonly doctorsService: DoctorsService) {}
-
-  @Post()
-  create(@Body() createDoctorDto: CreateDoctorDto) {
-    return this.doctorsService.create(createDoctorDto);
-  }
+  constructor(private readonly doctorsService: DoctorsService) { }
 
   @Get()
   findAll() {

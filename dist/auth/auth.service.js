@@ -57,7 +57,7 @@ let AuthService = class AuthService {
         return a;
     }
     async login(account) {
-        let payload = { email: account.email, role: account.role, sub: account.Id };
+        let payload = { email: account.email, role: account.role, id: account.id };
         let token;
         if (account.role === dto_1.Role.Patient) {
             token = (0, jsonwebtoken_1.sign)(payload, `${process.env.JWT_SECRET}`, { expiresIn: '2h' });

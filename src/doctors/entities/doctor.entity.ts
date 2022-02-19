@@ -19,6 +19,12 @@ export class Doctor extends BaseEntity {
    @Column({nullable: true})
    address : string
 
+   @Column({nullable: true})
+   state : string
+
+   @Column({nullable: true})
+   lga : string
+
    @Column()
    password : string
    

@@ -12,10 +12,6 @@ export class ChatController {
       return await this.chatService.createMessage(body);
    }
 
-   @Get()
-   async allmessages(@Query('id') id) {
-      return await this.chatService.getMessages(Number(id))
-   }
    // @Get('one')
    // tes(@Query() query) {
    //    return this.accountService.findByUsername(query.one)

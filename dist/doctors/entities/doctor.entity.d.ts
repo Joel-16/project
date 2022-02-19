@@ -7,6 +7,8 @@ export declare class Doctor extends BaseEntity {
     username: string;
     email: string;
     address: string;
+    state: string;
+    lga: string;
     password: string;
     salt: string;
     created_at: Date;

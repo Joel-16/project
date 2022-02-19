@@ -7,5 +7,4 @@ export declare class ChatController {
         sender: any;
         recipient: any;
     } & import("./entities/messages.entity").Messages>;
-    allmessages(id: any): Promise<import("./entities/messages.entity").Messages[]>;
 }
