@@ -25,7 +25,7 @@ __decorate([
     __metadata("design:type", account_entity_1.Account)
 ], Chats.prototype, "account", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => doctor_entity_1.Doctor, doctor => doctor.chats),
+    (0, typeorm_1.ManyToOne)(() => doctor_entity_1.Doctor, doctor => doctor.chats, { onDelete: 'SET NULL' }),
     __metadata("design:type", doctor_entity_1.Doctor)
 ], Chats.prototype, "doctor", void 0);
 __decorate([

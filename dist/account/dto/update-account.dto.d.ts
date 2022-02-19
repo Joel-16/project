@@ -3,8 +3,6 @@ export declare class UpdateProfile {
     last_name?: string;
     age?: number;
     address?: string;
-    state?: string;
-    lga?: string;
     image?: {
         link: string;
         path: string;

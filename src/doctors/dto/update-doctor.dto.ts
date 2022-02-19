@@ -1,4 +1,15 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateDoctorDto } from './create-doctor.dto';
-
-export class UpdateDoctorDto extends PartialType(CreateDoctorDto) {}
+export class Photo {
+   link : string;
+   path : string;
+}
+export class UpdateProfile {
+   first_name? : string;
+   last_name? : string;
+   address? :string
+   state? : string;
+   lga? :string
+   image? :{
+      link: string,
+      path: string
+   }
+}

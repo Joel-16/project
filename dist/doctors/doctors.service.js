@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const doctor_entity_1 = require("./entities/doctor.entity");
+const fs_1 = require("fs");
 let DoctorsService = class DoctorsService {
     constructor(doctor) {
         this.doctor = doctor;
@@ -30,6 +31,22 @@ let DoctorsService = class DoctorsService {
         });
         return doctor;
     }
+    async profile(profile, user) {
+        let account = await this.doctor.findOne({ id: user.id });
+        let link;
+        if (account.image != null) {
+            link = account.image.path;
+            (0, fs_1.unlinkSync)(link);
+        }
+        account.address = profile.address;
+        account.first_name = profile.first_name;
+        account.last_name = profile.last_name;
+        account.state = profile.state,
+            account.lga = profile.lga;
+        account.image = profile.image;
+        await account.save();
+        return account;
+    }
     async findById(id) {
         return await this.doctor.findOne(id);
     }
@@ -39,8 +56,8 @@ let DoctorsService = class DoctorsService {
     async findAll() {
         return await this.doctor.find({});
     }
-    remove(id) {
-        return `This action removes a #${id} doctor`;
+    async remove(id) {
+        return await this.doctor.delete({ id: id });
     }
 };
 DoctorsService = __decorate([

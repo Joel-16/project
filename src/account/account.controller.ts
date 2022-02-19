@@ -1,6 +1,5 @@
 import { Controller, Get, Post, Body, Param, Delete, UseGuards, Req, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Express } from 'express';
 import { diskStorage } from 'multer';
 import { imageStorage } from '../util/fileUpload';
 import { AuthenticatorGuard } from '../util/authenticatorGuard.util';

@@ -11,7 +11,7 @@ export class Chats extends BaseEntity {
   @ManyToOne(() => Account, account=> account.chats)
   account : Account
   
-  @ManyToOne(()=> Doctor, doctor=> doctor.chats)
+  @ManyToOne(()=> Doctor, doctor=> doctor.chats,{onDelete : 'SET NULL'})
   doctor : Doctor
   
   @Column({type : 'timestamp', default : new Date()})

@@ -45,8 +45,9 @@ let AccountService = class AccountService {
     async profile(profile, user) {
         let account = await this.account.findOne({ id: user.id });
         let link;
-        if (account.image) {
+        if (account.image != null) {
             link = account.image.path;
+            (0, fs_1.unlinkSync)(link);
         }
         account.address = profile.address,
             account.age = profile.age,
@@ -54,7 +55,6 @@ let AccountService = class AccountService {
             account.last_name = profile.last_name,
             account.image = profile.image;
         await account.save();
-        (0, fs_1.unlinkSync)(link);
         return account;
     }
     async remove() {

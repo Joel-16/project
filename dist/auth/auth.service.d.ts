@@ -48,13 +48,16 @@ export declare class AuthService {
         history: import("../account/entities/history.entites").History[];
     }>;
     validateDoctor(email: string, password: string): Promise<{
-        id: string;
+        id: number;
         role: Role;
+        first_name: string;
+        last_name: string;
         username: string;
         email: string;
         address: string;
         state: string;
         lga: string;
+        image: import("../doctors/dto/update-doctor.dto").Photo;
         created_at: Date;
         chats: import("../chat/entities/chats.entity").Chats[];
     }>;

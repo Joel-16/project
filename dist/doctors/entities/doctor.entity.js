@@ -12,17 +12,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Doctor = void 0;
 const typeorm_1 = require("typeorm");
 const dto_1 = require("../../dto/dto");
+const update_doctor_dto_1 = require("../dto/update-doctor.dto");
 const chats_entity_1 = require("../../chat/entities/chats.entity");
 let Doctor = class Doctor extends typeorm_1.BaseEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], Doctor.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: dto_1.Role.Doctor }),
     __metadata("design:type", String)
 ], Doctor.prototype, "role", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Doctor.prototype, "first_name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Doctor.prototype, "last_name", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true, unique: true }),
     __metadata("design:type", String)
@@ -43,6 +52,10 @@ __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Doctor.prototype, "lga", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'json', nullable: true }),
+    __metadata("design:type", update_doctor_dto_1.Photo)
+], Doctor.prototype, "image", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
