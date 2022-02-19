@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { AccountService } from './account/account.service';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 import { LocalAuthGuard } from './auth/util/local-auth.guard';
+import { DoctorsService } from './doctors/doctors.service';
 import { RegisterDto } from './dto/dto';
 
 @Controller()
@@ -10,7 +11,8 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly accountService : AccountService,
-    private readonly authService : AuthService
+    private readonly authService : AuthService,
+    private readonly doctorService : DoctorsService
     ) {}
 
   @Get()
@@ -34,6 +36,10 @@ export class AppController {
     return {token : token, user : req.user}
   }
 
+  @Get('find-doctor')
+  async getDoctors(@Query() query){
+    return await this.doctorService.findByLocation(query)
+  }
 
   @Get('all')
   async all (){

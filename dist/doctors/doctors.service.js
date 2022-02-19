@@ -53,6 +53,9 @@ let DoctorsService = class DoctorsService {
     async findOne(email) {
         return await this.doctor.findOne({ email });
     }
+    async findByLocation({ state, lg }) {
+        return await this.doctor.find({ where: { state: state, lga: lg } });
+    }
     async findAll() {
         return await this.doctor.find({});
     }

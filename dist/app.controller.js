@@ -18,12 +18,14 @@ const account_service_1 = require("./account/account.service");
 const app_service_1 = require("./app.service");
 const auth_service_1 = require("./auth/auth.service");
 const local_auth_guard_1 = require("./auth/util/local-auth.guard");
+const doctors_service_1 = require("./doctors/doctors.service");
 const dto_1 = require("./dto/dto");
 let AppController = class AppController {
-    constructor(appService, accountService, authService) {
+    constructor(appService, accountService, authService, doctorService) {
         this.appService = appService;
         this.accountService = accountService;
         this.authService = authService;
+        this.doctorService = doctorService;
     }
     getHello() {
         return this.appService.getHello();
@@ -38,6 +40,9 @@ let AppController = class AppController {
     async login(req) {
         let token = await this.authService.login(req.user);
         return { token: token, user: req.user };
+    }
+    async getDoctors(query) {
+        return await this.doctorService.findByLocation(query);
     }
     async all() {
         return await this.accountService.findAll();
@@ -69,6 +74,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "login", null);
 __decorate([
+    (0, common_1.Get)('find-doctor'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "getDoctors", null);
+__decorate([
     (0, common_1.Get)('all'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -84,7 +96,8 @@ AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService,
         account_service_1.AccountService,
-        auth_service_1.AuthService])
+        auth_service_1.AuthService,
+        doctors_service_1.DoctorsService])
 ], AppController);
 exports.AppController = AppController;
 //# sourceMappingURL=app.controller.js.map

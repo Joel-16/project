@@ -1,12 +1,14 @@
 import { AccountService } from './account/account.service';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
+import { DoctorsService } from './doctors/doctors.service';
 import { RegisterDto } from './dto/dto';
 export declare class AppController {
     private readonly appService;
     private readonly accountService;
     private readonly authService;
-    constructor(appService: AppService, accountService: AccountService, authService: AuthService);
+    private readonly doctorService;
+    constructor(appService: AppService, accountService: AccountService, authService: AuthService, doctorService: DoctorsService);
     getHello(): string;
     register(body: RegisterDto): Promise<{
         address: string;
@@ -26,6 +28,7 @@ export declare class AppController {
         token: any;
         user: any;
     }>;
+    getDoctors(query: any): Promise<import("./doctors/entities/doctor.entity").Doctor[]>;
     all(): Promise<import("./account/entities/account.entity").Account[]>;
     delete(): Promise<import("typeorm").DeleteResult>;
 }

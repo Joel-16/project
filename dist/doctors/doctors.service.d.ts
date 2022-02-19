@@ -14,6 +14,10 @@ export declare class DoctorsService {
     profile(profile: UpdateProfile, user: any): Promise<Doctor>;
     findById(id: number): Promise<Doctor>;
     findOne(email: string): Promise<Doctor>;
+    findByLocation({ state, lg }: {
+        state: any;
+        lg: any;
+    }): Promise<Doctor[]>;
     findAll(): Promise<Doctor[]>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }
