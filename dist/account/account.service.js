@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const fs_1 = require("fs");
-const account_entity_1 = require("./entities/account.entity");
+const account_entity_1 = require("../entities/account.entity");
 let AccountService = class AccountService {
     constructor(account) {
         this.account = account;

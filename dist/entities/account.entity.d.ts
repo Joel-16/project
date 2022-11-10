@@ -1,7 +1,7 @@
 import { BaseEntity } from "typeorm";
-import { History } from './history.entites';
-import { Photo, Role } from '../../dto/dto';
-import { Chats } from "../../chat/entities/chats.entity";
+import { History } from './history.entity';
+import { Photo, Role } from '../dto/dto';
+import { Chats } from "./chats.entity";
 export declare class Account extends BaseEntity {
     id: number;
     role: Role;

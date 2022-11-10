@@ -14,8 +14,8 @@ const doctors_module_1 = require("../doctors/doctors.module");
 const chat_gateway_1 = require("./chat.gateway");
 const chat_controller_1 = require("./chat.controller");
 const chat_services_1 = require("./chat.services");
-const chats_entity_1 = require("./entities/chats.entity");
-const messages_entity_1 = require("./entities/messages.entity");
+const chats_entity_1 = require("../entities/chats.entity");
+const messages_entity_1 = require("../entities/messages.entity");
 let ChatModule = class ChatModule {
 };
 ChatModule = __decorate([

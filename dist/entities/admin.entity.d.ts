@@ -1,5 +1,5 @@
 import { BaseEntity } from "typeorm";
-import { Role } from "../../dto/dto";
+import { Role } from "../dto/dto";
 export declare class Admin extends BaseEntity {
     id: string;
     role: Role;

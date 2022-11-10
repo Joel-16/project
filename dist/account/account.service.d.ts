@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { Account } from './entities/account.entity';
+import { Account } from '../entities/account.entity';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateProfile } from './dto/update-account.dto';
 export declare class AccountService {

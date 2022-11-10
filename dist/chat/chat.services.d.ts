@@ -1,8 +1,8 @@
 import { Repository } from 'typeorm';
 import { AccountService } from '../account/account.service';
 import { DoctorsService } from '../doctors/doctors.service';
-import { Chats } from './entities/chats.entity';
-import { Messages } from './entities/messages.entity';
+import { Chats } from '../entities/chats.entity';
+import { Messages } from '../entities/messages.entity';
 export declare class ChatService {
     private readonly doctorService;
     private readonly accountService;

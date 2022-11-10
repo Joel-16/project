@@ -1,7 +1,7 @@
 import { BaseEntity } from "typeorm";
 import { Role } from "../../dto/dto";
 import { Photo } from "../dto/update-doctor.dto";
-import { Chats } from "../../chat/entities/chats.entity";
+import { Chats } from "../../entities/chats.entity";
 export declare class Doctor extends BaseEntity {
     id: number;
     role: Role;

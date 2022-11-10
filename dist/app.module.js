@@ -12,7 +12,6 @@ const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const dbconnection_1 = require("./util/dbconnection");
 const auth_module_1 = require("./auth/auth.module");
 const account_module_1 = require("./account/account.module");
 const chat_module_1 = require("./chat/chat.module");
@@ -24,7 +23,7 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({ isGlobal: true }),
-            typeorm_1.TypeOrmModule.forRoot(dbconnection_1.database),
+            typeorm_1.TypeOrmModule.forRoot(),
             auth_module_1.AuthModule,
             account_module_1.AccountModule,
             chat_module_1.ChatModule,

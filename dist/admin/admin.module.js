@@ -13,7 +13,7 @@ const doctors_module_1 = require("../doctors/doctors.module");
 const auth_module_1 = require("../auth/auth.module");
 const admin_service_1 = require("./admin.service");
 const admin_controller_1 = require("./admin.controller");
-const admin_entity_1 = require("./entities/admin.entity");
+const admin_entity_1 = require("../entities/admin.entity");
 let AdminModule = class AdminModule {
 };
 AdminModule = __decorate([

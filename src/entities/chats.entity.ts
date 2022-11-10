@@ -1,7 +1,7 @@
 import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, JoinColumn, OneToMany, ManyToOne} from "typeorm";
-import { Account } from "../../account/entities/account.entity";
+import { Account } from "./account.entity";
 import { Messages } from "./messages.entity";
-import { Doctor } from "../../doctors/entities/doctor.entity";
+import { Doctor } from "../doctors/entities/doctor.entity";
 
 @Entity()
 export class Chats extends BaseEntity {

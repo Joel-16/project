@@ -14,6 +14,6 @@ export declare class AdminController {
         address: string;
     } & import("../doctors/entities/doctor.entity").Doctor>;
     findAll(): string;
-    findOne(id: string): Promise<import("./entities/admin.entity").Admin>;
+    findOne(id: string): Promise<import("../entities/admin.entity").Admin>;
     remove(id: string): string;
 }

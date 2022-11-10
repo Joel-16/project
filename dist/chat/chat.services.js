@@ -18,8 +18,8 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const account_service_1 = require("../account/account.service");
 const doctors_service_1 = require("../doctors/doctors.service");
-const chats_entity_1 = require("./entities/chats.entity");
-const messages_entity_1 = require("./entities/messages.entity");
+const chats_entity_1 = require("../entities/chats.entity");
+const messages_entity_1 = require("../entities/messages.entity");
 let ChatService = class ChatService {
     constructor(doctorService, accountService, chats, messages) {
         this.doctorService = doctorService;

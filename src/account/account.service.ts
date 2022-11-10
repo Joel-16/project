@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { unlinkSync } from 'fs';
-import { Account } from './entities/account.entity'
+import { Account } from '../entities/account.entity'
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateProfile } from './dto/update-account.dto';
 

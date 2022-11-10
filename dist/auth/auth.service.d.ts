@@ -18,8 +18,8 @@ export declare class AuthService {
         age: number;
         image: import("../dto/dto").Photo;
         created_at: Date;
-        chats: import("../chat/entities/chats.entity").Chats[];
-        history: import("../account/entities/history.entites").History[];
+        chats: import("../entities/chats.entity").Chats[];
+        history: import("../entities/history.entity").History[];
     }>;
     doctorReg(staff: any, pass: string): Promise<{
         email: string;
@@ -31,7 +31,7 @@ export declare class AuthService {
         email: any;
         password: any;
         salt: any;
-    } & import("../admin/entities/admin.entity").Admin>;
+    } & import("../entities/admin.entity").Admin>;
     login(account: any): Promise<any>;
     validateUser(email: string, password: string): Promise<{
         id: number;
@@ -44,8 +44,8 @@ export declare class AuthService {
         email: string;
         image: import("../dto/dto").Photo;
         created_at: Date;
-        chats: import("../chat/entities/chats.entity").Chats[];
-        history: import("../account/entities/history.entites").History[];
+        chats: import("../entities/chats.entity").Chats[];
+        history: import("../entities/history.entity").History[];
     }>;
     validateDoctor(email: string, password: string): Promise<{
         id: number;
@@ -59,7 +59,7 @@ export declare class AuthService {
         lga: string;
         image: import("../doctors/dto/update-doctor.dto").Photo;
         created_at: Date;
-        chats: import("../chat/entities/chats.entity").Chats[];
+        chats: import("../entities/chats.entity").Chats[];
     }>;
     validateAdmin(email: string, password: string): Promise<{
         id: string;

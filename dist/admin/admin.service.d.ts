@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { Admin } from './entities/admin.entity';
+import { Admin } from '../entities/admin.entity';
 export declare class AdminService {
     private readonly admin;
     constructor(admin: Repository<Admin>);

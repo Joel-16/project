@@ -1,7 +1,7 @@
 import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, JoinColumn, OneToMany, CreateDateColumn } from "typeorm";
 import { Role } from "../../dto/dto";
 import { Photo } from "../dto/update-doctor.dto";
-import { Chats } from "../../chat/entities/chats.entity";
+import { Chats } from "../../entities/chats.entity";
 
 @Entity()
 export class Doctor extends BaseEntity {

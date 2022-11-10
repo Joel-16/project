@@ -11,9 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Chats = void 0;
 const typeorm_1 = require("typeorm");
-const account_entity_1 = require("../../account/entities/account.entity");
+const account_entity_1 = require("./account.entity");
 const messages_entity_1 = require("./messages.entity");
-const doctor_entity_1 = require("../../doctors/entities/doctor.entity");
+const doctor_entity_1 = require("../doctors/entities/doctor.entity");
 let Chats = class Chats extends typeorm_1.BaseEntity {
 };
 __decorate([

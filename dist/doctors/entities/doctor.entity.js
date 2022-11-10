@@ -13,7 +13,7 @@ exports.Doctor = void 0;
 const typeorm_1 = require("typeorm");
 const dto_1 = require("../../dto/dto");
 const update_doctor_dto_1 = require("../dto/update-doctor.dto");
-const chats_entity_1 = require("../../chat/entities/chats.entity");
+const chats_entity_1 = require("../../entities/chats.entity");
 let Doctor = class Doctor extends typeorm_1.BaseEntity {
 };
 __decorate([

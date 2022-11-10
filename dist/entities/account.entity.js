@@ -11,9 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Account = void 0;
 const typeorm_1 = require("typeorm");
-const history_entites_1 = require("./history.entites");
-const dto_1 = require("../../dto/dto");
-const chats_entity_1 = require("../../chat/entities/chats.entity");
+const history_entity_1 = require("./history.entity");
+const dto_1 = require("../dto/dto");
+const chats_entity_1 = require("./chats.entity");
 let Account = class Account extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -70,7 +70,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Account.prototype, "chats", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => history_entites_1.History, history => history.account, { eager: true, nullable: true }),
+    (0, typeorm_1.OneToMany)(() => history_entity_1.History, history => history.account, { eager: true, nullable: true }),
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", Array)
 ], Account.prototype, "history", void 0);

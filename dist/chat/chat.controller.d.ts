@@ -6,5 +6,5 @@ export declare class ChatController {
         content: any;
         sender: any;
         recipient: any;
-    } & import("./entities/messages.entity").Messages>;
+    } & import("../entities/messages.entity").Messages>;
 }

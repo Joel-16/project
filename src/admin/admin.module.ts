@@ -4,7 +4,7 @@ import { DoctorsModule } from '../doctors/doctors.module';
 import { AuthModule } from '../auth/auth.module';
 import { AdminService } from './admin.service';
 import { AdminController } from './admin.controller';
-import { Admin } from './entities/admin.entity';
+import { Admin } from '../entities/admin.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Admin]), DoctorsModule, forwardRef(()=>AuthModule)],

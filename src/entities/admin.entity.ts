@@ -1,5 +1,5 @@
 import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, JoinColumn, OneToMany} from "typeorm";
-import { Role } from "../../dto/dto";
+import { Role } from "../dto/dto";
 
 @Entity()
 export class Admin extends BaseEntity {

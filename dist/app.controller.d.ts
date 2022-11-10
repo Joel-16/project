@@ -21,14 +21,14 @@ export declare class AppController {
         age: number;
         image: import("./dto/dto").Photo;
         created_at: Date;
-        chats: import("./chat/entities/chats.entity").Chats[];
-        history: import("./account/entities/history.entites").History[];
+        chats: import("./entities/chats.entity").Chats[];
+        history: import("./entities/history.entity").History[];
     }>;
     login(req: any): Promise<{
         token: any;
         user: any;
     }>;
     getDoctors(query: any): Promise<import("./doctors/entities/doctor.entity").Doctor[]>;
-    all(): Promise<import("./account/entities/account.entity").Account[]>;
+    all(): Promise<import("./entities/account.entity").Account[]>;
     delete(): Promise<import("typeorm").DeleteResult>;
 }
