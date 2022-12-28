@@ -66,9 +66,6 @@ export declare class AuthService {
         role: Role;
         email: string;
     }>;
-    encryption(password: string): Promise<{
-        password: string;
-        salt: string;
-    }>;
-    decryption(account: any, password: string): Promise<boolean>;
+    private encryption;
+    private decryption;
 }

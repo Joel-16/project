@@ -23,7 +23,7 @@ export class ChatGateway {
   @SubscribeMessage('search')
   async search(client : Socket, message : string) {
     // let a = await this.accountService.findByUsername(message)
-    console.log(message)
+    console.log(client.id)
     this.server.emit('search',message)
   }
 

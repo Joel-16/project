@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3000")
+const socket = io("http://localhost:4000")
 
 const message = document.getElementById('message')
 const messsges = document.getElementById('messages')

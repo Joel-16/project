@@ -23,11 +23,6 @@ export class AuthService {
     loginDto.password = credentials.password
     loginDto.salt = credentials.salt
     let { password, salt, ...account } = await this.accountService.create(loginDto)
-    // let result =await this.emailService.emailConfirmation(account.id, loginDto.email, loginDto.firstName)
-    // if (result){
-    //    return {status : 200, message :"please view your email"}
-    // }
-
     return account
   }
 
@@ -94,14 +89,14 @@ export class AuthService {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED)
     }
   }
-  async encryption(password: string) {
+  private async encryption(password: string) {
     let salt = await randomBytes(32).toString('hex');
     let hash = await pbkdf2Sync(password, salt, 1000, 64, "sha256").toString('hex');
     let cred = { password: hash, salt: salt }
     return cred
   }
 
-  async decryption(account, password: string) {
+  private async decryption(account, password: string) {
     if (account.password === pbkdf2Sync(password, account.salt, 1000, 64, "sha256").toString('hex')) {
       return true
     } else {

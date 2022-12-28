@@ -31,10 +31,8 @@ let AppController = class AppController {
         return this.appService.getHello();
     }
     async register(body) {
-        if (!body.password || !body.email) {
-            throw new common_1.HttpException('All fields are required', common_1.HttpStatus.NOT_ACCEPTABLE);
-        }
         let a = await this.authService.register(body);
+        console.log(a);
         return a;
     }
     async login(req) {

@@ -20,7 +20,7 @@ let ChatGateway = class ChatGateway {
         this.chatService = chatService;
     }
     async search(client, message) {
-        console.log(message);
+        console.log(client.id);
         this.server.emit('search', message);
     }
 };

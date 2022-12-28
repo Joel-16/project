@@ -5,7 +5,7 @@ const ssl = {
 module.exports =
 {
   type: 'postgres',
-  url: process.env.DATABASE_URL || "postgres://postgres:5432@localhost:5432/telepsy",
+  url: process.env.DATABASE_URL || "postgres://postgres:5432@localhost:5432/tely",
   entities: ["dist/**/entities/*.entity{.ts,.js}"],
   migrations: ["dist/migration/*.js"],
   synchronize: true,

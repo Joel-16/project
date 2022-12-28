@@ -22,10 +22,11 @@ export class AppController {
 
   @Post('register')
   async register(@Body() body: RegisterDto){
-    if(!body.password || !body.email){
-      throw new HttpException('All fields are required', HttpStatus.NOT_ACCEPTABLE)
-    }
+    // if(!body.password || !body.email){
+    //   throw new HttpException('All fields are required', HttpStatus.NOT_ACCEPTABLE)
+    // }
     let a = await this.authService.register(body)
+    console.log(a)
     return a
   }
 
